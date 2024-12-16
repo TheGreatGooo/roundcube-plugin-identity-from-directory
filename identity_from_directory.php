@@ -77,7 +77,7 @@ class identity_from_directory extends rcube_plugin
 
                 foreach (array_keys($ldap_entry) as $key) {
                     // add email addresses (main, aliases) to the list for the user
-                    if (preg_match('/^email($|:)/i', $key)) {
+                    if (preg_match('^(email|mailAlias)($|:)', $key)) {
                         foreach ((array) $ldap_entry[$key] as $alias) {
                             $alias = rcube_utils::idn_to_utf8(trim($alias));
                             if (empty($alias) || self::email_in_array($alias, $user_data['email_list'])) {
